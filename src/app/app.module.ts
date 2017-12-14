@@ -2,13 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   MatToolbarModule,
   MatButtonModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatTableModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,9 +19,28 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
 import { AuthService } from './services/auth.service';
+import { LoginComponent } from './components/login/login.component';
+import { NotesService } from './services/notes.service';
+import { NoteIndexComponent } from './components/note/note-index/note-index.component';
+import { NoteCreateComponent } from './components/note/note-create/note-create.component';
+import { NoteDetailsComponent } from './components/note/note-details/note-details.component';
+import { NoteDeleteComponent } from './components/note/note-delete/note-delete.component';
+import { NoteEditComponent } from './components/note/note-edit/note-edit.component';
+
+import { AuthGuard } from './guards/auth.guard';
 
 const routes = [
-  { path: 'register', component: RegistrationComponent},
+  { path: 'register', component: RegistrationComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'notes', canActivate: [AuthGuard] , children: [
+      { path: '', component: NoteIndexComponent },
+      { path: 'create', component: NoteCreateComponent },
+      { path: 'detail/:id', component: NoteDetailsComponent},
+      { path: 'edit/:id', component: NoteEditComponent},
+      { path: 'delete/:id', component: NoteDeleteComponent}
+    ]
+  },
   { path: '**', component: RegistrationComponent }
 ];
 
@@ -28,22 +48,31 @@ const routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent,
+    NoteIndexComponent,
+    NoteCreateComponent,
+    NoteDetailsComponent,
+    NoteDeleteComponent,
+    NoteEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    NotesService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

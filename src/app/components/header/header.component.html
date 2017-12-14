@@ -1,6 +1,25 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
   <span>Angular Eleven Note</span>
   <span class="example-fill-remaining-space"></span>
-  <button mat-raised-button class="nav-btn">Register</button>
-  <button mat-raised-button class="nav-btn">Login</button>
+
+
+  {{user}}
+  <button mat-raised-button class="nav-btn" routerLink="/register">Register</button>
+  <button mat-raised-button class="nav-btn" routerLink="/login">Login</button>
+  <button mat-raised-button class="nav-btn" (click)="onLoggout()">Logout</button>
+  
+</mat-toolbar> -->
+<mat-toolbar color="primary">
+  <span>Angular Eleven Note</span>
+  <button mat-button routerLink="notes/index" *ngIf="isLoggedIn">Notes</button>
+  <span class="example-fill-remaining-space"></span>
+  <div *ngIf="isLoggedIn; else auth">
+    <span>Welcome {{username}}</span>
+    <button mat-raised-button class="nav-btn" (click)="onLoggout()">Logout</button>
+  </div>
+  <ng-template #auth>
+    <button mat-raised-button class="nav-btn" routerLink="register">Register</button>
+    <button mat-raised-button class="nav-btn" routerLink="login">Login</button>
+    <button mat-raised-button class="nav-btn" (click)="onLoggout()">Logout</button>
+  </ng-template>
 </mat-toolbar>

@@ -10,26 +10,22 @@ export class NotesService {
   constructor(private _http: HttpClient) { }
 
   getNotes() {
-    return this._http.get(`${ApiUrl}/Notes`, { headers: this.getHeaders() });
+    return this._http.get(`${ApiUrl}/Notes`);
   }
 
   createNote(note: Note) {
-    return this._http.post(`${ApiUrl}/Notes`, note, { headers: this.getHeaders() });
+    return this._http.post(`${ApiUrl}/Notes`, note);
   }
 
   getNote(id: string) {
-    return this._http.get(`${ApiUrl}/Notes/${id}`, { headers: this.getHeaders() });
+    return this._http.get(`${ApiUrl}/Notes/${id}`);
   }
 
   deleteNote(id: number) {
-    return this._http.delete(`${ApiUrl}/Notes/${id}`, { headers: this.getHeaders() });
+    return this._http.delete(`${ApiUrl}/Notes/${id}`);
   }
 
   updateNote(note: Note) {
-    return this._http.put(`${ApiUrl}/Notes`, note, { headers: this.getHeaders() });
-  }
-
-  private getHeaders() {
-    return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
+    return this._http.put(`${ApiUrl}/Notes`, note);
   }
 }

@@ -31,6 +31,8 @@ import { NoteDeleteComponent } from './components/note/note-delete/note-delete.c
 import { NoteEditComponent } from './components/note/note-edit/note-edit.component';
 
 import { AuthGuard } from './guards/auth.guard';
+import { AdminModule } from './admin/admin.module';
+import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 
 const routes = [
   { path: 'register', component: RegistrationComponent },
@@ -44,6 +46,9 @@ const routes = [
       { path: 'delete/:id', component: NoteDeleteComponent}
     ]
   },
+  { path: 'admin', children: [
+    { path: '', component: DashboardComponent }
+  ] },
   { path: '**', component: RegistrationComponent }
 ];
 
@@ -70,7 +75,8 @@ const routes = [
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    AdminModule
   ],
   providers: [
     AuthService,

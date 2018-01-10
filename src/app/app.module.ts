@@ -16,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -33,6 +32,7 @@ import { NoteEditComponent } from './components/note/note-edit/note-edit.compone
 import { AuthGuard } from './guards/auth.guard';
 import { AdminModule } from './admin/admin.module';
 import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes = [
   { path: 'register', component: RegistrationComponent },
@@ -46,7 +46,7 @@ const routes = [
       { path: 'delete/:id', component: NoteDeleteComponent}
     ]
   },
-  { path: 'admin', children: [
+  { path: 'admin', canActivate: [ AdminGuard ] , children: [
     { path: '', component: DashboardComponent }
   ] },
   { path: '**', component: RegistrationComponent }
@@ -82,6 +82,7 @@ const routes = [
     AuthService,
     NotesService,
     AuthGuard,
+    AdminGuard,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

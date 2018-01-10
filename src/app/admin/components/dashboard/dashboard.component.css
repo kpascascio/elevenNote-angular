@@ -1,3 +1,7 @@
 mat-table mat-row.mat-row[role = "row"]:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.014);
+    background-color: rgba(163, 163, 163, 0.048);
+}
+
+mat-table mat-row.mat-row[role = "row"]:hover {
+    background-color: rgba(163, 163, 163, 0.109);
 }

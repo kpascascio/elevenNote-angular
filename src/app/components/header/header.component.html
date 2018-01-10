@@ -12,7 +12,6 @@
 <mat-toolbar color="primary">
   <span>Angular Eleven Note</span>
   <button mat-button routerLink="notes" *ngIf="isLoggedIn">Notes</button>
-  <button mat-button routerLink="admin" *ngIf="isLoggedIn">Admin</button>
   <span class="example-fill-remaining-space"></span>
   <div *ngIf="isLoggedIn; else auth">
     <span>Welcome {{username}}</span>

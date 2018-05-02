@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
-import { DataSource } from '@angular/cdk/collections';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,26 +9,15 @@ import 'rxjs/add/observable/of';
 })
 export class DashboardComponent implements OnInit {
 
-  usersDataSource: UsersDataSource | null;
+  usersDataSource = new MatTableDataSource<any>();
   private usersColumnNames = ['userId', 'email', 'username'];
 
   constructor(private _usersService: UsersService) { }
 
   ngOnInit() {
-    this._usersService.getUsers().subscribe(d => {
+    this._usersService.getUsers().subscribe((d: any[]) => {
       console.log(d);
-      this.usersDataSource = new UsersDataSource(d);
+      this.usersDataSource.data = d;
     });
   }
-}
-
-export class UsersDataSource extends DataSource<any> {
-
-  constructor(private usersData) {
-    super();
-  }
-  connect(collectionViewer): Observable<any[]> {
-    return Observable.of(this.usersData);
-  }
-  disconnect(collectionViewer): void { }
 }

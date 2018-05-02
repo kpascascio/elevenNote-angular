@@ -1,3 +1,4 @@
+import 'hammerjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +10,8 @@ import {
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-  MatTableModule
+  MatTableModule,
+  MatTooltipModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -33,6 +35,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminModule } from './admin/admin.module';
 import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 import { AdminGuard } from './guards/admin.guard';
+import { TruncatePipe } from './pipes/userId.pipe';
 
 const routes = [
   { path: 'register', component: RegistrationComponent },
@@ -62,7 +65,8 @@ const routes = [
     NoteCreateComponent,
     NoteDetailsComponent,
     NoteDeleteComponent,
-    NoteEditComponent
+    NoteEditComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -76,8 +80,10 @@ const routes = [
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatTooltipModule,
     AdminModule
   ],
+  exports: [TruncatePipe],
   providers: [
     AuthService,
     NotesService,

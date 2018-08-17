@@ -11,8 +11,11 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatTableModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatGridListModule,
+  MatTabsModule
 } from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TokenInterceptor } from './interceptors/token.interceptor';
@@ -81,6 +84,8 @@ const routes = [
     MatInputModule,
     MatTableModule,
     MatTooltipModule,
+    MatGridListModule,
+    MatTabsModule,
     AdminModule
   ],
   exports: [TruncatePipe],

@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-// const Api_Url = 'http://kcpelevennoteapie.azurewebsites.net';
-const Api_Url = 'http://localhost:49868';
+const Api_Url = 'http://kcpelevennoteapie.azurewebsites.net';
+// const Api_Url = 'http://localhost:49868';
 
 @Injectable()
 export class AuthService {

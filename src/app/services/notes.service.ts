@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Note } from '../models/Note';
 
-// const ApiUrl = 'http://kcpelevennoteapie.azurewebsites.net/api';
-const ApiUrl = 'http://localhost:49868/api';
+const ApiUrl = 'http://kcpelevennoteapie.azurewebsites.net/api';
+// const ApiUrl = 'http://localhost:49868/api';
 
 @Injectable()
 export class NotesService {
